@@ -1,0 +1,4 @@
+Premain-Class: com.carrotsearch.TraceInstrumenter
+Can-Redefine-Classes: true
+Can-Retransform-Classes: true
+ 
