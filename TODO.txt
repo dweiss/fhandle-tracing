@@ -1,0 +1,13 @@
+Notes:
+
+- Perhaps we should only capture FIS+.new() and Closeable+.close(); then we don't have to create new... 
+  but then there's reflective access to .close() and potential calls from third party libs, etc.
+  It's ideal to inject the code inside FIS.close(), not around/before the call.
+  
+- We can intercept FIS.new() but what to do with stream subclasses? Can't replace inherited fis.close
+  there! How to capture finalize() (should we)?
+
+- can we utilize an instrumentation agent to redefine FileInputStream in a portable (?) way:
+  http://docs.oracle.com/javase/7/docs/api/java/lang/instrument/Instrumentation.html#redefineClasses(java.lang.instrument.ClassDefinition...)
+  this would allow us to inject track/release code directly into FIS and it'd cleanup the code a lot.
+
